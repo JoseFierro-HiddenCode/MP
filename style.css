@@ -1,0 +1,1143 @@
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+
+    width: 100%;
+    height: 100%;
+}
+
+
+body {
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            #28001d 0%,
+            #13000f 25%,
+            #060008 60%,
+            #000000 100%
+        );
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+}
+
+
+/* =====================================================
+   ESCENA
+===================================================== */
+
+.scene {
+
+    position: relative;
+
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =====================================================
+   CONTENEDOR DEL CORAZÓN
+===================================================== */
+
+.heart-scene {
+
+    position: relative;
+
+    width: min(
+        720px,
+        90vw
+    );
+
+    aspect-ratio:
+        600 / 540;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =====================================================
+   AURA PRINCIPAL
+===================================================== */
+
+.ambient-glow {
+
+    position: absolute;
+
+    width: 55%;
+    height: 55%;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,20,147,.65),
+            rgba(255,0,110,.2),
+            transparent 70%
+        );
+
+    filter:
+        blur(75px);
+
+    opacity: 0;
+
+    animation:
+        ambientAppear
+        2s
+        1s
+        ease-out
+        forwards,
+
+        ambientPulse
+        2.2s
+        3s
+        ease-in-out
+        infinite;
+
+    z-index: 0;
+}
+
+
+@keyframes ambientAppear {
+
+    from {
+        opacity: 0;
+        transform: scale(.2);
+    }
+
+    to {
+        opacity: .6;
+        transform: scale(1);
+    }
+}
+
+
+@keyframes ambientPulse {
+
+    0%,
+    100% {
+
+        transform:
+            scale(.85);
+
+        opacity: .45;
+    }
+
+    50% {
+
+        transform:
+            scale(1.2);
+
+        opacity: .8;
+    }
+}
+
+
+/* =====================================================
+   HALOS
+===================================================== */
+
+.halo {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(255,70,180,.1);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    animation:
+        haloAppear
+        2s
+        2s
+        ease-out
+        forwards,
+
+        haloPulse
+        3s
+        4s
+        ease-in-out
+        infinite;
+}
+
+
+.halo-1 {
+
+    width: 70%;
+    height: 70%;
+}
+
+
+.halo-2 {
+
+    width: 86%;
+    height: 86%;
+
+    border-color:
+        rgba(255,70,180,.05);
+
+    animation-delay:
+        2.5s,
+        4.5s;
+}
+
+
+@keyframes haloAppear {
+
+    from {
+        opacity: 0;
+        transform: scale(.6);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+@keyframes haloPulse {
+
+    0%,
+    100% {
+
+        transform:
+            scale(.92);
+
+        opacity: .3;
+    }
+
+    50% {
+
+        transform:
+            scale(1.04);
+
+        opacity: 1;
+    }
+}
+
+
+/* =====================================================
+   SVG
+===================================================== */
+
+.heart {
+
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: visible;
+
+    z-index: 5;
+
+    opacity: 0;
+
+    animation:
+        svgAppear
+        .5s
+        .2s
+        ease-out
+        forwards,
+
+        heartBeat
+        1.9s
+        6.2s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes svgAppear {
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* =====================================================
+   GLOW POSTERIOR
+===================================================== */
+
+.heart-back {
+
+    fill: none;
+
+    stroke:
+        rgba(255,0,120,.28);
+
+    stroke-width:
+        28;
+
+    filter:
+        blur(22px);
+
+    opacity: 0;
+
+    animation:
+        backAppear
+        1.5s
+        2s
+        ease-out
+        forwards,
+
+        backPulse
+        2s
+        3.5s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes backAppear {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: .7;
+    }
+}
+
+
+@keyframes backPulse {
+
+    0%,
+    100% {
+        opacity: .35;
+    }
+
+    50% {
+        opacity: .9;
+    }
+}
+
+
+/* =====================================================
+   CORAZÓN PRINCIPAL
+===================================================== */
+
+.heart-outline {
+
+    fill: none;
+
+    stroke:
+        url(#heartGradient);
+
+    stroke-width:
+        7;
+
+    stroke-linecap:
+        round;
+
+    stroke-linejoin:
+        round;
+
+    filter:
+        url(#strongGlow);
+
+    stroke-dasharray:
+        2000;
+
+    stroke-dashoffset:
+        2000;
+
+    opacity: 0;
+
+    animation:
+        drawHeart
+        5s
+        .5s
+        cubic-bezier(.65,0,.25,1)
+        forwards,
+
+        heartGlow
+        1.9s
+        5.7s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes drawHeart {
+
+    0% {
+
+        stroke-dashoffset:
+            2000;
+
+        opacity: 0;
+    }
+
+    5% {
+
+        opacity: 1;
+    }
+
+    100% {
+
+        stroke-dashoffset:
+            0;
+
+        opacity: 1;
+    }
+}
+
+
+@keyframes heartGlow {
+
+    0%,
+    100% {
+        opacity: .8;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+/* =====================================================
+   LINEA INTERIOR
+===================================================== */
+
+.heart-inner {
+
+    fill: none;
+
+    stroke:
+        url(#innerGradient);
+
+    stroke-width:
+        2.5;
+
+    stroke-linecap:
+        round;
+
+    opacity: 0;
+
+    filter:
+        drop-shadow(
+            0 0 8px #ff1493
+        );
+
+    stroke-dasharray:
+        1500;
+
+    stroke-dashoffset:
+        1500;
+
+    animation:
+        drawInner
+        3s
+        4.7s
+        ease-out
+        forwards;
+}
+
+
+@keyframes drawInner {
+
+    0% {
+
+        stroke-dashoffset:
+            1500;
+
+        opacity: 0;
+    }
+
+    20% {
+
+        opacity: .7;
+    }
+
+    100% {
+
+        stroke-dashoffset:
+            0;
+
+        opacity: .7;
+    }
+}
+
+
+/* =====================================================
+   LINEA FINA
+===================================================== */
+
+.heart-fine {
+
+    fill: none;
+
+    stroke:
+        rgba(255,180,230,.7);
+
+    stroke-width:
+        1;
+
+    opacity: 0;
+
+    filter:
+        drop-shadow(
+            0 0 5px #ff1493
+        );
+
+    stroke-dasharray:
+        1300;
+
+    stroke-dashoffset:
+        1300;
+
+    animation:
+        drawFine
+        2.5s
+        5.2s
+        ease-out
+        forwards;
+}
+
+
+@keyframes drawFine {
+
+    0% {
+
+        stroke-dashoffset:
+            1300;
+
+        opacity: 0;
+    }
+
+    30% {
+
+        opacity: .5;
+    }
+
+    100% {
+
+        stroke-dashoffset:
+            0;
+
+        opacity: .5;
+    }
+}
+
+
+/* =====================================================
+   LATIDO
+===================================================== */
+
+@keyframes heartBeat {
+
+    0%,
+    100% {
+
+        transform:
+            scale(1);
+    }
+
+    8% {
+
+        transform:
+            scale(1.025);
+    }
+
+    16% {
+
+        transform:
+            scale(1);
+    }
+
+    24% {
+
+        transform:
+            scale(1.018);
+    }
+
+    32% {
+
+        transform:
+            scale(1);
+    }
+}
+
+
+/* =====================================================
+   MP
+===================================================== */
+
+.initials {
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    z-index: 20;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-style:
+        italic;
+
+    font-weight:
+        bold;
+
+    font-size:
+        clamp(
+            90px,
+            15vw,
+            170px
+        );
+
+    letter-spacing:
+        -12px;
+
+    color:
+        #ffffff;
+
+    opacity: 0;
+
+    text-shadow:
+
+        0 0 3px #ffffff,
+
+        0 0 10px #ffffff,
+
+        0 0 25px #ffb7e5,
+
+        0 0 45px #ff4db8,
+
+        0 0 75px #ff1493,
+
+        0 0 120px #ff006f;
+
+    animation:
+
+        revealMP
+        .8s
+        5.2s
+        cubic-bezier(.2,.8,.2,1)
+        forwards,
+
+        textBeat
+        1.9s
+        6.1s
+        ease-in-out
+        infinite;
+}
+
+
+/* =====================================================
+   APARICIÓN DE MP
+===================================================== */
+
+@keyframes revealMP {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(.4);
+
+        filter:
+            blur(18px)
+            brightness(3);
+    }
+
+    55% {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.12);
+
+        filter:
+            blur(0)
+            brightness(1.8);
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+
+        filter:
+            blur(0)
+            brightness(1);
+    }
+}
+
+
+/* =====================================================
+   LATIDO DE MP
+===================================================== */
+
+@keyframes textBeat {
+
+    0%,
+    100% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+
+        filter:
+            brightness(1);
+    }
+
+    8% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.07);
+
+        filter:
+            brightness(1.5);
+    }
+
+    16% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+
+        filter:
+            brightness(1);
+    }
+
+    24% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.035);
+    }
+
+    32% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+}
+
+
+/* =====================================================
+   CORAZÓN PEQUEÑO
+===================================================== */
+
+.tiny-heart {
+
+    position: absolute;
+
+    bottom: 10%;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 25;
+
+    font-size:
+        clamp(
+            24px,
+            4vw,
+            40px
+        );
+
+    color:
+        #ffffff;
+
+    opacity: 0;
+
+    text-shadow:
+
+        0 0 8px #ffffff,
+
+        0 0 20px #ff1493,
+
+        0 0 45px #ff1493;
+
+    animation:
+
+        tinyAppear
+        .8s
+        5.8s
+        ease-out
+        forwards,
+
+        tinyFloat
+        1.9s
+        6.6s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes tinyAppear {
+
+    from {
+        opacity: 0;
+        transform:
+            translateX(-50%)
+            scale(.2);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateX(-50%)
+            scale(1);
+    }
+}
+
+
+@keyframes tinyFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateX(-50%)
+            translateY(0);
+    }
+
+    50% {
+
+        transform:
+            translateX(-50%)
+            translateY(-8px);
+    }
+}
+
+
+/* =====================================================
+   DESTELLOS
+===================================================== */
+
+.spark {
+
+    position: absolute;
+
+    z-index: 30;
+
+    color:
+        #ffe6f5;
+
+    font-size:
+        clamp(
+            10px,
+            2vw,
+            20px
+        );
+
+    opacity: 0;
+
+    text-shadow:
+
+        0 0 6px #ffffff,
+
+        0 0 15px #ff1493,
+
+        0 0 30px #ff1493;
+
+    animation:
+
+        sparkle
+        2.5s
+        6s
+        ease-in-out
+        infinite;
+}
+
+
+.spark-1 {
+    top: 18%;
+    left: 19%;
+}
+
+.spark-2 {
+    top: 12%;
+    right: 22%;
+    animation-delay: 6.4s;
+}
+
+.spark-3 {
+    top: 42%;
+    left: 10%;
+    animation-delay: 7s;
+}
+
+.spark-4 {
+    top: 37%;
+    right: 11%;
+    animation-delay: 6.7s;
+}
+
+.spark-5 {
+    bottom: 22%;
+    left: 19%;
+    animation-delay: 7.4s;
+}
+
+.spark-6 {
+    bottom: 17%;
+    right: 18%;
+    animation-delay: 6.3s;
+}
+
+.spark-7 {
+    top: 25%;
+    left: 33%;
+    animation-delay: 7.8s;
+}
+
+.spark-8 {
+    bottom: 29%;
+    right: 31%;
+    animation-delay: 6.9s;
+}
+
+
+@keyframes sparkle {
+
+    0%,
+    100% {
+
+        opacity:
+            .1;
+
+        transform:
+            scale(.5)
+            rotate(0deg);
+    }
+
+    50% {
+
+        opacity:
+            1;
+
+        transform:
+            scale(1.5)
+            rotate(45deg);
+    }
+}
+
+
+/* =====================================================
+   PARTICULAS
+===================================================== */
+
+#particles {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+
+.particle {
+
+    position: absolute;
+
+    width: 2px;
+    height: 2px;
+
+    border-radius: 50%;
+
+    background:
+        #ff9cda;
+
+    box-shadow:
+
+        0 0 5px #ff1493,
+
+        0 0 12px #ff1493;
+
+    opacity: 0;
+
+    animation:
+        particleAppear
+        2s
+        5s
+        ease-out
+        forwards,
+
+        particlePulse
+        var(--duration)
+        7s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes particleAppear {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: .7;
+    }
+}
+
+
+@keyframes particlePulse {
+
+    0% {
+        opacity: .15;
+        transform: scale(.4);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+
+    100% {
+        opacity: .15;
+        transform: scale(.4);
+    }
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .heart-scene {
+
+        width:
+            110vw;
+
+        max-width:
+            650px;
+    }
+
+    .initials {
+
+        font-size:
+            clamp(
+                80px,
+                22vw,
+                130px
+            );
+
+        letter-spacing:
+            -8px;
+    }
+
+    .halo-2 {
+
+        width:
+            92%;
+
+        height:
+            92%;
+    }
+
+    .spark-1 {
+        left: 12%;
+    }
+
+    .spark-2 {
+        right: 12%;
+    }
+
+    .spark-3 {
+        left: 5%;
+    }
+
+    .spark-4 {
+        right: 5%;
+    }
+
+    .spark-5 {
+        left: 12%;
+    }
+
+    .spark-6 {
+        right: 12%;
+    }
+}
+
+
+/* =====================================================
+   CELULAR PEQUEÑO
+===================================================== */
+
+@media (max-width: 380px) {
+
+    .heart-scene {
+
+        width:
+            115vw;
+    }
+
+    .initials {
+
+        font-size:
+            82px;
+
+        letter-spacing:
+            -7px;
+    }
+
+    .tiny-heart {
+
+        bottom:
+            11%;
+    }
+}

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MP ❤️</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- PARTICULAS -->
+    <div id="particles"></div>
+
+    <!-- ESCENA -->
+    <main class="scene">
+
+        <div class="heart-scene">
+
+            <!-- AURA -->
+            <div class="ambient-glow"></div>
+
+            <div class="halo halo-1"></div>
+            <div class="halo halo-2"></div>
+
+
+            <!-- =========================================
+                 CORAZÓN SVG
+            ========================================== -->
+
+            <svg
+                class="heart"
+                viewBox="0 0 600 540"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+
+                <defs>
+
+                    <!-- GRADIENTE PRINCIPAL -->
+
+                    <linearGradient
+                        id="heartGradient"
+                        x1="0%"
+                        y1="0%"
+                        x2="100%"
+                        y2="100%"
+                    >
+
+                        <stop
+                            offset="0%"
+                            stop-color="#ffffff"
+                        />
+
+                        <stop
+                            offset="15%"
+                            stop-color="#ffd1ed"
+                        />
+
+                        <stop
+                            offset="35%"
+                            stop-color="#ff78c8"
+                        />
+
+                        <stop
+                            offset="55%"
+                            stop-color="#ff1493"
+                        />
+
+                        <stop
+                            offset="80%"
+                            stop-color="#ff006f"
+                        />
+
+                        <stop
+                            offset="100%"
+                            stop-color="#a9005c"
+                        />
+
+                    </linearGradient>
+
+
+                    <!-- GRADIENTE INTERIOR -->
+
+                    <linearGradient
+                        id="innerGradient"
+                        x1="0%"
+                        y1="0%"
+                        x2="100%"
+                        y2="100%"
+                    >
+
+                        <stop
+                            offset="0%"
+                            stop-color="#ffffff"
+                        />
+
+                        <stop
+                            offset="50%"
+                            stop-color="#ff7acb"
+                        />
+
+                        <stop
+                            offset="100%"
+                            stop-color="#ff007f"
+                        />
+
+                    </linearGradient>
+
+
+                    <!-- GLOW -->
+
+                    <filter
+                        id="strongGlow"
+                        x="-100%"
+                        y="-100%"
+                        width="300%"
+                        height="300%"
+                    >
+
+                        <feGaussianBlur
+                            stdDeviation="7"
+                            result="blur1"
+                        />
+
+                        <feGaussianBlur
+                            in="SourceGraphic"
+                            stdDeviation="2"
+                            result="blur2"
+                        />
+
+                        <feMerge>
+
+                            <feMergeNode in="blur1"/>
+                            <feMergeNode in="blur2"/>
+                            <feMergeNode in="SourceGraphic"/>
+
+                        </feMerge>
+
+                    </filter>
+
+                </defs>
+
+
+                <!-- =====================================
+                     GLOW DEL CORAZÓN
+                ====================================== -->
+
+                <path
+                    class="heart-back"
+                    d="
+                        M300 510
+
+                        C260 465
+                        70 345
+                        50 210
+
+                        C32 100
+                        155 38
+                        245 98
+
+                        C278 120
+                        294 148
+                        300 180
+
+                        C306 148
+                        322 120
+                        355 98
+
+                        C445 38
+                        568 100
+                        550 210
+
+                        C530 345
+                        340 465
+                        300 510
+                    "
+                />
+
+
+                <!-- =====================================
+                     CORAZÓN PRINCIPAL
+                ====================================== -->
+
+                <path
+                    class="heart-outline"
+                    d="
+                        M300 510
+
+                        C260 465
+                        70 345
+                        50 210
+
+                        C32 100
+                        155 38
+                        245 98
+
+                        C278 120
+                        294 148
+                        300 180
+
+                        C306 148
+                        322 120
+                        355 98
+
+                        C445 38
+                        568 100
+                        550 210
+
+                        C530 345
+                        340 465
+                        300 510
+                    "
+                />
+
+
+                <!-- =====================================
+                     LINEA INTERIOR
+                ====================================== -->
+
+                <path
+                    class="heart-inner"
+                    d="
+                        M300 470
+
+                        C270 430
+                        110 325
+                        90 215
+
+                        C75 140
+                        160 90
+                        225 130
+
+                        C265 155
+                        292 195
+                        300 225
+
+                        C308 195
+                        335 155
+                        375 130
+
+                        C440 90
+                        525 140
+                        510 215
+
+                        C490 325
+                        330 430
+                        300 470
+                    "
+                />
+
+
+                <!-- =====================================
+                     LINEA FINA
+                ====================================== -->
+
+                <path
+                    class="heart-fine"
+                    d="
+                        M300 490
+
+                        C265 445
+                        90 335
+                        70 215
+
+                        C52 120
+                        160 65
+                        235 115
+
+                        C272 140
+                        294 175
+                        300 205
+
+                        C306 175
+                        328 140
+                        365 115
+
+                        C440 65
+                        548 120
+                        530 215
+
+                        C510 335
+                        335 445
+                        300 490
+                    "
+                />
+
+            </svg>
+
+
+            <!-- =====================================
+                 DESTELLOS
+            ====================================== -->
+
+            <div class="spark spark-1">✦</div>
+            <div class="spark spark-2">✧</div>
+            <div class="spark spark-3">·</div>
+            <div class="spark spark-4">✦</div>
+            <div class="spark spark-5">·</div>
+            <div class="spark spark-6">✧</div>
+            <div class="spark spark-7">✦</div>
+            <div class="spark spark-8">·</div>
+
+
+            <!-- =====================================
+                 MP
+            ====================================== -->
+
+            <div class="initials">
+                MP
+            </div>
+
+
+            <!-- =====================================
+                 CORAZÓN PEQUEÑO
+            ====================================== -->
+
+            <div class="tiny-heart">
+                ♥
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
